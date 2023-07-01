@@ -15,7 +15,7 @@ To run the project locally, follow these steps:
 2. Open the project directory:
 
    ```bash
-   cd sorting-visualization
+   cd Sorting-Algorithms-Visualization
    ```
 
 3. Open the `index.html` file in a web browser.
