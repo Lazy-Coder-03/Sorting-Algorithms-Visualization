@@ -1,0 +1,301 @@
+/* styles.css */
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set a background color and font styles for the body */
+body {
+  background-color: #8A9AFF;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+span {
+  color: #000;
+  margin-left: 5px;
+  font-weight: bold;
+  width: 100px;
+}
+
+/* Center the container and sidebar */
+.container,
+.sidebar {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Style the heading */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Style the canvas container */
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.content {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  word-wrap: break-word;
+  margin-bottom: 20px; /* Add margin-bottom for spacing */
+}
+/* Ensure the canvas matches the container size */
+.canvas-container canvas {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #6BE4B5;
+}
+
+/* Style the stats section */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Style the stat label and value */
+.stat {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.stat label {
+  font-weight: bold;
+}
+
+.stat span {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+/* Style the sorting algorithm label and select */
+.label-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label-container label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.label-container select {
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.label-container select:hover {
+  background-color: #A26BE4;
+}
+
+/* Style the number of rectangles slider and p element */
+.slider-container,
+.p-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Increase margin-bottom for breathing room */
+}
+
+.slider-container label,
+.p-container label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.slider-container input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  flex-grow: 1;
+  width: 100%;
+  height: 5px;
+  border-radius: 4px;
+  background-color: #ddd;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #333;
+  cursor: pointer;
+  position: relative;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb::before {
+  content: attr(data-value);
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  background-color: #ff5733;
+  padding: 5px;
+  border-radius: 4px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.slider-container input[type="range"]:hover::-webkit-slider-thumb {
+  background-color: #E46B99;
+}
+
+/* Style the buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buttons button:last-child {
+  margin-right: 0;
+}
+
+.buttons button:hover {
+  background-color: #B76BE4;
+}
+
+.buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Sidebar styles */
+.sidebar {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  overflow-x: auto;
+  transition: width 0.3s ease-in-out;
+}
+
+.sidebar.collapsed {
+  width: 50px;
+}
+
+.sidebar.collapsed {
+  overflow-x: hidden; /* Disable scrolling when collapsed */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 20px;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+}
+
+.sidebar ul li a:hover {
+  background-color: #ddd;
+}
+/* Mobile view styles */
+
+@media (max-width: 600px) {
+  .container,
+  .sidebar {
+    padding: 10px;
+  }
+
+  .canvas-container {
+    border: none;
+  }
+
+  .stats,
+  .label-container,
+  .slider-container,
+  .p-container,
+  .buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stat,
+  .label-container,
+  .slider-container,
+  .p-container {
+    margin-bottom: 10px;
+  }
+
+  .slider-container input[type="range"] {
+    height: 3px;
+  }
+
+  .p-container p {
+    width: auto;
+    margin-left: 10px;
+  }
+
+  /* Hide the sidebar when it's collapsed */
+  .sidebar.collapsed {
+    display: none;
+  }
+}
+/* Mobile view styles */
+
+@media (max-width: 600px) {
+  .container,
+  .sidebar {
+    padding: 10px;
+  }
+
+  .canvas-container {
+    border: none;
+  }
+
+  .stats,
+  .label-container,
+  .slider-container,
+  .p-container,
+  .buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stat,
+  .label-container,
+  .slider-container,
+  .p-container {
+    margin-bottom: 10px;
+  }
+
+  .slider-container input[type="range"] {
+    height: 3px;
+  }
+
+  .p-container p {
+    width: auto;
+    margin-left: 10px;
+  }
+}
