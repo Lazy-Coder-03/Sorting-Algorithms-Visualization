@@ -45,13 +45,16 @@ function drawRectangles() {
   rectWidth = width / values.length;
   let w = map(rectWidth, width / 10, 1, 1, 0);
   strokeWeight(w);
+  colorMode(mode = HSB);
   for (let i = 0; i < values.length; i++) {
     if (values[i].highlight) {
-      fill(255, 0, 0);
+      //let g = map(values[i].value, 0, height, 360, 360);
+      fill("white");
     } else if (values[i].sorted) {
       fill(0, 255, 0);
     } else {
-      fill(220);
+      let f = map(values[i].value, 0, height, 0,  360);
+      fill(f, 255, 255);
     }
     rect(i * rectWidth, height - values[i].value, rectWidth, values[i].value);
   }
@@ -63,14 +66,22 @@ function initializeRectangles() {
   rectWidth = width / numRectangles;
 
   for (let i = 0; i < numRectangles; i++) {
+    let f = (height/numRectangles)
     values.push({
-      value: random(0, height),
+      value: floor(f*(i+1)),//random(0, height),
       highlight: false,
       sorted: false,
     });
   }
+  shuffle(values, true); // Shuffle the array
   updateNumRectanglesValue(numRectangles); // Update the text box value
-
+  swaps = 0; // Reset the swaps counter
+  comparisons = 0; // Reset the comparisons counter
+  timeElapsed = 0; // Reset the time elapsed
+  updateTimeValue(timeElapsed)
+  updateSwapsValue(swaps)
+  updateComparisonsValue(comparisons); // Update the HTML element with the current comparisons value
+  
   if (sorting) {
     sorting = false; // Reset the sorting state if it was in progress
   }
@@ -114,12 +125,6 @@ function randomizeValues() {
   initializeRectangles(); // Randomize the array
 }
 
-function randomizeValues() {
-  if (sorting) {
-    sorting = false; // Interrupt the sorting process
-  }
-  initializeRectangles(); // Randomize the array
-}
 
 function getNumRectangles() {
   const slider = document.getElementById("numRectangles");
@@ -146,6 +151,12 @@ function updateNumRectanglesValue() {
 }
 function updateComparisonsValue(value) {
   document.getElementById("comparisonsValue").textContent = value;
+}
+function updateSwapsValue(value) {
+  document.getElementById("swapsValue").textContent = value;
+}
+function updateTimeValue(value) {
+  document.getElementById("timeElapsedValue").textContent = value;
 }
 
 function getSortingAlgorithm(algorithm) {
@@ -217,7 +228,13 @@ class SelectionSort {
       await sleep(animationDelay); // Delay for visualization
       swap(arr, i, minIndex);
     }
+    this.unhighlightAll(arr);
     updateComparisonsValue(comparisons);
+  }
+  unhighlightAll(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      arr[i].highlight = false;
+    }
   }
 }
 
@@ -331,7 +348,7 @@ class MergeSort {
   async sort(arr) {
     let comparisons = { count: 0 }; // Wrap comparisons in an object
     await this.mergeSort(arr, 0, arr.length - 1, comparisons);
-    this.unhighlightAll(arr); // Unhighlight all rectangles after sorting
+    //this.unhighlightAll(arr); // Unhighlight all rectangles after sorting
     updateComparisonsValue(comparisons.count); // Update the HTML element with the current comparisons value
   }
 
@@ -341,6 +358,7 @@ class MergeSort {
       await this.mergeSort(arr, start, mid, comparisons);
       await this.mergeSort(arr, mid + 1, end, comparisons);
       await this.merge(arr, start, mid, end, comparisons);
+      this.unhighlightAll(arr); 
     }
   }
 
