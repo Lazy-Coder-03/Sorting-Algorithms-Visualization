@@ -65,9 +65,9 @@
           <input
             type="range"
             id="animationDelay"
-            min="1"
+            min="0"
             max="200"
-            step="1"
+            step="10"
             value="10"
             oninput="changeAnimationDelay()"
             data-value-display="#animationDelayValue"
@@ -75,12 +75,14 @@
           <span class="slider-value" id="animationDelayValue">10 ms</span>
         </div>
         <div class="buttons">
-          <button onclick="startSorting()">Start Sorting</button>
+        <button id="startSortingButton" onclick="startSorting()">Start Sorting</button>
+
           <button onclick="randomizeValues()">Randomize</button>
         </div>
       </div>
     </div>
 
     <script src="sketch.js"></script>
+    <script src="sorting_algs.js"></script>
   </body>
 </html>
