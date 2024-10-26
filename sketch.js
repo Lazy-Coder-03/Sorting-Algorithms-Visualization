@@ -177,8 +177,6 @@ function getSortingAlgorithm(algorithm) {
       return new HeapSort();
     case "radix":
       return new RadixSort();
-    case "pigeon":
-      return new PigeonholeSort();
 
     default:
       return null;
@@ -552,22 +550,4 @@ function changeAnimationDelay() {
   animationDelay = document.getElementById("animationDelay").value;
   document.getElementById("animationDelayValue").textContent =
     animationDelay + " ms";
-}
-function toggleSidebar() {
-  var sidebar = document.querySelector(".sidebar");
-  var menuToggle = document.querySelectorAll(".menu-toggle");
-
-  sidebar.classList.toggle("collapsed");
-
-  if (sidebar.classList.contains("collapsed")) {
-    // Hide the menu toggle icons when sidebar is collapsed
-    menuToggle.forEach(function (icon) {
-      icon.style.display = "none";
-    });
-  } else {
-    // Show the menu toggle icons when sidebar is uncollapsed
-    menuToggle.forEach(function (icon) {
-      icon.style.display = "block";
-    });
-  }
 }
